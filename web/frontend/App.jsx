@@ -21,8 +21,12 @@ export default function App() {
             <NavigationMenu
               navigationLinks={[
                 {
-                  label: "Page name",
-                  destination: "/pagename",
+                  label: "Home page",
+                  destination: "/",
+                },
+                {
+                  label: "New QR code",
+                  destination: "/qrcodes/new",
                 },
               ]}
             />

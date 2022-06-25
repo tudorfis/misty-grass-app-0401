@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "@shopify/app": "3.0.24",
-    "@shopify/cli": "3.0.24"
+    "@shopify/cli": "3.0.24",
+    "qrcode": "^1.5.0"
   },
   "author": "todor"
 }
