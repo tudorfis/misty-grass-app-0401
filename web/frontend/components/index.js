@@ -1,3 +1,2 @@
-export { QRCodeForm } from './qr-code/QRCodeForm'
-export { QRCodeIndex } from './qr-code/QRCodeIndex'
+export * from "./qr-code";
 export * from "./providers";

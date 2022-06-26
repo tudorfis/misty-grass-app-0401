@@ -114,10 +114,12 @@ export const QRCodesDB = {
 
     delete: async function (id) {
         await this.ready;
+
         const query = `
-      DELETE FROM ${this.qrCodesTableName}
-      WHERE id = ?;
-    `;
+            DELETE FROM ${this.qrCodesTableName}
+            WHERE id = ?;
+        `;
+
         await this.__query(query, [id]);
         return true;
     },
@@ -158,11 +160,11 @@ export const QRCodesDB = {
 
     __hasQrCodesTable: async function () {
         const query = `
-      SELECT name FROM sqlite_schema
-      WHERE
-        type = 'table' AND
-        name = ?;
-    `;
+            SELECT name FROM sqlite_schema
+            WHERE
+                type = 'table' AND
+                name = ?;
+        `;
         const rows = await this.__query(query, [this.qrCodesTableName]);
         return rows.length === 1;
     },
@@ -181,20 +183,20 @@ export const QRCodesDB = {
             /* Create the QR code table if it hasn't been created */
         } else {
             const query = `
-        CREATE TABLE ${this.qrCodesTableName} (
-          id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-          shopDomain VARCHAR(511) NOT NULL,
-          title VARCHAR(511) NOT NULL,
-          productId VARCHAR(255) NOT NULL,
-          variantId VARCHAR(255) NOT NULL,
-          handle VARCHAR(255) NOT NULL,
-          discountId VARCHAR(255) NOT NULL,
-          discountCode VARCHAR(255) NOT NULL,
-          destination VARCHAR(255) NOT NULL,
-          scans INTEGER,
-          createdAt DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime'))
-        )
-      `;
+                CREATE TABLE ${this.qrCodesTableName} (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                    shopDomain VARCHAR(511) NOT NULL,
+                    title VARCHAR(511) NOT NULL,
+                    productId VARCHAR(255) NOT NULL,
+                    variantId VARCHAR(255) NOT NULL,
+                    handle VARCHAR(255) NOT NULL,
+                    discountId VARCHAR(255) NOT NULL,
+                    discountCode VARCHAR(255) NOT NULL,
+                    destination VARCHAR(255) NOT NULL,
+                    scans INTEGER,
+                    createdAt DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime'))
+                )
+            `;
 
             /* Tell the various CRUD methods that they can execute */
             this.ready = this.__query(query);
